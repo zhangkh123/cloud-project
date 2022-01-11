@@ -1,0 +1,23 @@
+server:
+  port: 2022
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      routes:
+        - id: spring-cloud-provider
+          uri: lb://spring-cloud-provider
+          predicates:
+          - Path=/spring-cloud-provider/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@localhost:9900/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}

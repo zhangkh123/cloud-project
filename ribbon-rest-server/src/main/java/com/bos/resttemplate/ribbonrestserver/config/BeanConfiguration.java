@@ -1,0 +1,16 @@
+package com.bos.resttemplate.ribbonrestserver.config;
+
+import com.bos.resttemplate.ribbonrestserver.intcepter.MyLoadBalanced;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+
+@Configuration
+public class BeanConfiguration {
+    @Bean
+    @LoadBalanced
+    public RestTemplate getRestTemplate(){
+        return new RestTemplate();
+    }
+}
